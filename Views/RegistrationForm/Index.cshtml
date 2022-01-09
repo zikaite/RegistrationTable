@@ -1,0 +1,35 @@
+﻿@using RegistrationForm.DTOs
+@using (Html.BeginForm("Submit", "RegistrationForm", FormMethod.Post))
+@model CreateQuestion
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Registracijos pozymiai</th>
+            <th scope="col">Reiksme</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+              @for (int i = 0; i < @Model.Questions.Count; i++)
+            { 
+            <tr>
+                <td>@Model.Questions[i].Name</td>
+                <td>
+                     @Html.DropDownListFor(a => @Model.Questions[i].AnswerId, 
+                         new SelectList(@Model.Questions[i].Answers, "Id", "Name"),"", new { @class="dropdown"})
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+    <input id="edit" class="btn btn-info" type="button" value="Koreguoti pozymius" />
+    <input id="save" class="btn btn-danger" type="submit" value="Saugoti pataisymus" disabled />
+    <input id="cancel" class="btn btn-warning" type="button" value="Atsauksti pataisymus" disabled />
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/form.js"></script>
+
+    
